@@ -1,0 +1,148 @@
+@import "./mixin.scss";
+@import "./keyframe.scss";
+
+body {
+  margin: 0;
+}
+
+.swiper {
+  height: 460px;
+  .swiper-wrapper {
+    padding: 20px 0;
+  }
+
+  .swiper-slide {
+    overflow: hidden;
+    height: 400px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 20px 1px black;
+
+    & > img {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    & > a {
+      font-size: 1.7rem;
+      font-family: "Nico Moji";
+      font-weight: bold;
+      text-shadow: 0px 0px 5px black;
+      color: rgb(255, 255, 255);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & > p {
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          top: 100%;
+          left: 0;
+          background-color: rgb(253, 253, 253);
+          box-shadow: 0px 0px 5px black;
+          opacity: 0;
+        }
+      }
+      &:hover {
+        & > p {
+          @include animation($name: bound);
+          &::before {
+            @include animation($name: border);
+          }
+        }
+      }
+    }
+  }
+
+  .swiper-button-prev {
+    color: aliceblue;
+  }
+  .swiper-button-next {
+    color: aliceblue;
+  }
+  .swiper-pagination-bullet {
+    background-color: rgb(121, 6, 6);
+  }
+}
+
+.peech {
+  position: relative;
+  .three-ball {
+    position: absolute;
+    top: 16%;
+    left: -20%;
+    & > span {
+      box-shadow: 0px 0px 30px 0px black;
+      border-radius: 50%;
+      background-color: beige;
+      display: inline-block;
+      margin: 0 10px;
+      animation: sk-bouncedelay 3s infinite;
+      &:nth-child(1) {
+        width: 24px;
+        height: 24px;
+        transform: translate(0px, 0);
+      }
+      &:nth-child(2) {
+        width: 16px;
+        height: 16px;
+        transform: translate(0px, 10px);
+      }
+      &:nth-child(3) {
+        width: 11px;
+        height: 11px;
+        transform: translate(0px, 20px);
+      }
+      @for $i from 1 through 3 {
+        &:nth-child(#{$i}) {
+          animation-delay: -0.18s * $i;
+        }
+      }
+    }
+  }
+}
+
+.swashIn {
+  @include animation($name: swashIn, $duration: 2s);
+}
+.tinUpIn {
+  @include animation($name: tinUpIn, $duration: 1s, $delay: 2s);
+}
+.boingInUp {
+  @include animation($name: boingInUp, $duration: 0.8s, $delay: 2.5s);
+}
+
+.header__post {
+  color: white;
+  font-size: 3rem;
+  font-family: "Nico Moji";
+  text-align: center;
+  text-shadow: 5px 5px 10px black;
+  width: 100%;
+  display: block;
+  margin: 45px auto 20px;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: white;
+    width: 350px;
+    height: 5px;
+    top: 100%;
+    box-shadow: 0px 5px 20px 0px black;
+  }
+  @include animation($name: header__post, $iteration-count: infinite);
+}
